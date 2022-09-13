@@ -50,14 +50,14 @@ class VkApi:
 
     def http_handler(self, error: Exception) -> None: ...
 
-    def too_many_rps_handler(self, error: VkApiError): ...  
+    def too_many_rps_handler(self, error: VkApiError): ...
 
     def auth_handler(self) -> None: ...
 
     def get_api(self) -> VkApiMethod: ...
-    
-    def method(self, method: str, values: dict | None= None, captcha_sid: str|int|None=None, captcha_key: str | None=None,
-               raw: bool=False) -> dict: ...
+
+    def method(self, method: str, values: dict | None = None, captcha_sid: str | int | None = None, captcha_key: str | None = None,
+               raw: bool = False) -> dict: ...
 
 
 class VkApiGroup(VkApi):
@@ -72,135 +72,189 @@ class VkApiMethod(object):
     class account:
         @staticmethod
         def owner_id(*, owner_id: int) -> Literal[1]: ...
+
         @staticmethod
-        def changePassword(*, restore_sid: str|None = None, change_password_hash: str|None = None,
-                           old_password: str | None= None, new_password: str|None = None) -> dict[Literal["token"], str]: ...
+        def changePassword(*, restore_sid: str | None = None, change_password_hash: str | None = None,
+                           old_password: str | None = None, new_password: str | None = None) -> dict[Literal["token"], str]: ...
+
         @staticmethod
-        def getActiveOffers(*, offset: Positive|None = None, count: Positive|None = None) -> list[Any]: ...
+        def getActiveOffers(*, offset: Positive | None = None, count: Positive | None = None) -> list[Any]: ...
         @staticmethod
         def getAppPermissions(*, user_id: Positive): ...
         @staticmethod
-        def getBanned(*, offset: Positive|None = None, count: Positive|None = None): ...
+        def getBanned(*, offset: Positive | None = None, count: Positive | None = None): ...
         @staticmethod
-        def getCounters(*, filter: str|None = None, user_id: int|None = None) -> list[Any]| dict[Any, Any]: ...
+        def getCounters(*, filter: str | None = None, user_id: int | None = None) -> list[Any] | dict[Any, Any]: ...
         @staticmethod
-        def getInfo(*, fields: str|None = None) -> dict[Any, Any]: ...
+        def getInfo(*, fields: str | None = None) -> dict[Any, Any]: ...
         @staticmethod
         def getProfileInfo() -> dict[Any, Any]: ...
         @staticmethod
-        def getPushSettings(*, token: str|None = None, device_id: str|None = None) -> dict[Any, Any]: ...
+        def getPushSettings(*, token: str | None = None, device_id: str | None = None) -> dict[Any, Any]: ...
+
         @staticmethod
-        def lookupContacts(*, service: str, contacts: str|None = None, mycontact: str|None = None, 
-                           return_all: bool = False, fields: str|None = None ): ...
+        def lookupContacts(*, service: str, contacts: str | None = None, mycontact: str | None = None,
+                           return_all: bool = False, fields: str | None = None): ...
+
         @staticmethod
-        def registerDevice(*, token: str, device_id: str, device_model: str|None = None,
-                           device_year: int|None = None, system_version: str|None = None,
-                           no_text: bool = False, subscribe: str|None = None,
-                           settings: str|None = None, sandbox: bool = False) -> Literal[1]: ...
+        def registerDevice(*, token: str, device_id: str, device_model: str | None = None,
+                           device_year: int | None = None, system_version: str | None = None,
+                           no_text: bool = False, subscribe: str | None = None,
+                           settings: str | None = None, sandbox: bool = False) -> Literal[1]: ...
+
         @staticmethod
-        def saveProfileInfo(*, first_name: str|None = None, last_name: str|None = None,
-                            maiden_name: str|None = None, screen_name: str|None = None,
-                            cancel_request_id: Positive|None = None,
-                            sex: Positive|None = None, relation: Positive|None = None,
-                            relation_partner_id: int|None = None, bdate: str|None = None,
-                            bdate_visibility: Positive|None = None, home_town: str|None = None,
-                            county_id: Positive|None = None, status: str|None = None) -> Literal[0, 1]: ...
+        def saveProfileInfo(*, first_name: str | None = None, last_name: str | None = None,
+                            maiden_name: str | None = None, screen_name: str | None = None,
+                            cancel_request_id: Positive | None = None,
+                            sex: Positive | None = None, relation: Positive | None = None,
+                            relation_partner_id: int | None = None, bdate: str | None = None,
+                            bdate_visibility: Positive | None = None, home_town: str | None = None,
+                            county_id: Positive | None = None, status: str | None = None) -> Literal[0, 1]: ...
+
         @staticmethod
-        def setInfo(*, intro: Positive|None = None, own_posts_default: bool = False,
-                    no_wall_replies: bool = False, name: str|None = None, value: str|None = None
-                    ) -> Literal[1]: ...   
+        def setInfo(*, intro: Positive | None = None, own_posts_default: bool = False,
+                    no_wall_replies: bool = False, name: str | None = None, value: str | None = None
+                    ) -> Literal[1]: ...
+
         @staticmethod
-        def setNameInMenu(*, user_id: Positive, name: str|None = None) -> Literal[1]: ...
+        def setNameInMenu(*, user_id: Positive, name: str | None = None) -> Literal[1]: ...
         @staticmethod
         def setOffline() -> Literal[1]: ...
         @staticmethod
         def setOnline(*, voip: bool = False) -> Literal[1]: ...
+
         @staticmethod
-        def setPushSettings(*, device_id: str, settings: str|None = None, 
-                            key: str|None = None, value: str|None = None) -> Literal[1]: ...
+        def setPushSettings(*, device_id: str, settings: str | None = None,
+                            key: str | None = None, value: str | None = None) -> Literal[1]: ...
+
         @staticmethod
-        def setSilenceMode(*, token: str|None = None, device_id: str|None = None,
-                           time: int|None = None, chat_id: int|None = None,
-                           user_id: int|None = None, peer_id: int|None = None,
-                           sound: int|None = None) -> Literal[1]: ...
+        def setSilenceMode(*, token: str | None = None, device_id: str | None = None,
+                           time: int | None = None, chat_id: int | None = None,
+                           user_id: int | None = None, peer_id: int | None = None,
+                           sound: int | None = None) -> Literal[1]: ...
+
         @staticmethod
-        def unban(*, owner_id: int|None = None) -> Literal[1]: ...
+        def unban(*, owner_id: int | None = None) -> Literal[1]: ...
+
         @staticmethod
-        def unregisterDevice(*, token: str|None = None,
-                             device_id: str|None = None,
+        def unregisterDevice(*, token: str | None = None,
+                             device_id: str | None = None,
                              sandbox: bool = False) -> Literal[1]: ...
-    class ads: ... 
-    
-    class appWidgets: ...
-    
-    class apps: ...
-    
-    class auth: ...
-    
-    class board: ...
-    
-    class calls: ...
-    
-    class database: ...
-    
-    class docs: ...
-    
-    class donut: ...
-    
-    class downloadedGame: ...
-    
-    class fave: ...
-    
-    class friends: ...
-    
-    class gifts: ...
-    
-    class groups: ...
-    
-    class leadForms: ...
-    
-    class likes: ...
-    
-    class market: ...
-    
-    class messages: ...
-    
-    class newsfeed: ...
-    
-    class notes: ...
-    
-    class notifications: ...
-    
-    class orders: ...
-    
-    class pages: ...
-    
-    class photos: ...
-    
-    class places: ...
-    
-    class podcasts: ...
-    
-    class polls: ...
-    
-    class prettycards: ...
-    
-    class search: ...
-    
-    class secure: ...
-    
-    class stats: ...
-    
-    class status: ...
-    
-    class storage: ...
-    
-    class store: ...
-    
-    class stories: ...
-    
-    class streaming: ...
-    
+
+    class ads:
+        ...
+
+    class appWidgets:
+        ...
+
+    class apps:
+        ...
+
+    class auth:
+        @staticmethod
+        def checkPhone(*, phone: str, client_id: int | None = None,
+                       client_secret: str | None = None,
+                       auth_by_phone: bool = False) -> Literal[1]: ...
+
+        @staticmethod
+        def restore(phone: str, last_name: str) -> dict[Any, Any]: ...
+
+    class board:
+        ...
+
+    class calls:
+        ...
+
+    class database:
+        ...
+
+    class docs:
+        ...
+
+    class donut:
+        ...
+
+    class downloadedGame:
+        ...
+
+    class fave:
+        ...
+
+    class friends:
+        ...
+
+    class gifts:
+        ...
+
+    class groups:
+        ...
+
+    class leadForms:
+        ...
+
+    class likes:
+        ...
+
+    class market:
+        ...
+
+    class messages:
+        ...
+
+    class newsfeed:
+        ...
+
+    class notes:
+        ...
+
+    class notifications:
+        ...
+
+    class orders:
+        ...
+
+    class pages:
+        ...
+
+    class photos:
+        ...
+
+    class places:
+        ...
+
+    class podcasts:
+        ...
+
+    class polls:
+        ...
+
+    class prettycards:
+        ...
+
+    class search:
+        ...
+
+    class secure:
+        ...
+
+    class stats:
+        ...
+
+    class status:
+        ...
+
+    class storage:
+        ...
+
+    class store:
+        ...
+
+    class stories:
+        ...
+
+    class streaming:
+        ...
+
     class users:
         @staticmethod
         def get(*, user_ids: str = "", fields: str = "",
@@ -210,12 +264,15 @@ class VkApiMethod(object):
         @staticmethod
         def getFollowers(*, user_id: Positive | None = None, offset: Positive = 0,
                          count: Positive = 100, fields: str = "", name_case: NAME_CASE = "nom") -> dict[Any, Any]: ...
+
         @staticmethod
         def getSubscriptions(*, user_id: Positive | None = None, extended: bool = False,
                              offset: Positive = 0, count: Positive | None = None, fields: str | None = None) -> dict[Any, Any]: ...
+
         @staticmethod
         def report(*, user_id: Positive, type: Literal["porn", "spam",
                    "insult", "advertisеment"], comment: str = "") -> Literal[1]: ...
+
         @staticmethod
         def search(*, q: str = "", sort: Literal[0, 1] | None = None, offset: Positive = 0, count: Positive | None = None,
                    fields: str = "", city: Positive | None = None, country: Positive | None = None, hometown: str | None = None,
@@ -228,20 +285,24 @@ class VkApiMethod(object):
                    school: Positive | None = None, school_year: Positive | None = None,
                    religion: str | None = None, company: str | None = None, position: str | None = None,
                    group_id: Positive | None = None, from_list: str | None = None) -> dict[Any, Any]: ...
-        
-    class utils: ...
-    
-    class video: ...
-    
-    class wall: ...
-    
-    class widgets: ...
-    
+
+    class utils:
+        ...
+
+    class video:
+        ...
+
+    class wall:
+        ...
+
+    class widgets:
+        ...
+
     class audio:
         @staticmethod
-        def get(*, owner_id: int|None = None, album_id: int|None=None,
-                audio_ids: str|None = None, need_user: bool = False,
-                offset: Positive|None = None, count: Positive|None = None) -> dict[Any, Any]:
+        def get(*, owner_id: int | None = None, album_id: int | None = None,
+                audio_ids: str | None = None, need_user: bool = False,
+                offset: Positive | None = None, count: Positive | None = None) -> dict[Any, Any]:
             "Возвращает список аудиозаписей пользователя или сообщества."
         @staticmethod
         def getById(*, audios: str) -> list[dict[Any, Any]]:
@@ -250,74 +311,73 @@ class VkApiMethod(object):
         def getLyrics(*, lyrics_id: int) -> dict[Any, Any]:
             "Возвращает текст аудиозаписи."
         @staticmethod
-        def search(*, q: str, auto_complete: bool = False, 
+        def search(*, q: str, auto_complete: bool = False,
                    lyrics: bool = False, performer_only: bool = False,
-                   sort: int|None = None, search_own: Literal[0, 1]|None = None,
-                   offset: Positive|None = None, count: Positive|None = None) -> dict[Any, Any]:
+                   sort: int | None = None, search_own: Literal[0, 1] | None = None,
+                   offset: Positive | None = None, count: Positive | None = None) -> dict[Any, Any]:
             "Возвращает список аудиозаписей в соответствии с заданным критерием поиска."
         @staticmethod
         def getUploadServer() -> dict[Literal["upload_url"], str]:
             "Возвращает адрес сервера для загрузки аудиозаписей."
         @staticmethod
-        def save(*, server: int, audio: str, hash: str|None = None, artist: str|None = None,
-                 title: str|None = None) -> dict[Any, Any]:
+        def save(*, server: int, audio: str, hash: str | None = None, artist: str | None = None,
+                 title: str | None = None) -> dict[Any, Any]:
             "Сохраняет аудиозаписи после успешной загрузки."
         @staticmethod
-        def add(*, audio_id: Positive, owner_id: int, group_id: int|None = None,
-                playlist_id: Positive|None = None, ref: str|None = None,
-                access_key: str|None = None, track_code: str|None = None) -> int:
+        def add(*, audio_id: Positive, owner_id: int, group_id: int | None = None,
+                playlist_id: Positive | None = None, ref: str | None = None,
+                access_key: str | None = None, track_code: str | None = None) -> int:
             "Копирует аудиозапись на страницу пользователя или группы."
         @staticmethod
         def delete(*, audio_id: Positive, owner_id: int) -> Literal[1]:
             "Удаляет аудиозапись со страницы пользователя или сообщества."
         @staticmethod
-        def edit(*, owner_id: int, audio_id: Positive, artist: str|None = None,
-                 title: str|None = None, text: str|None = None, 
-                 genre_id: Positive|None = None, no_search: bool = False) -> int:
+        def edit(*, owner_id: int, audio_id: Positive, artist: str | None = None,
+                 title: str | None = None, text: str | None = None,
+                 genre_id: Positive | None = None, no_search: bool = False) -> int:
             "Редактирует данные аудиозаписи на странице пользователя или сообщества."
         @staticmethod
-        def reorder(*, audio_id: Positive, owner_id: int|None = None, before: int|None = None,
-                    after: int|None = None) -> Literal[1]:
+        def reorder(*, audio_id: Positive, owner_id: int | None = None, before: int | None = None,
+                    after: int | None = None) -> Literal[1]:
             "Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы которых переданы параметрами after и before."
         @staticmethod
-        def restore(*, audio_id: Positive, owner_id: int|None = None) -> dict[Any, Any]:
+        def restore(*, audio_id: Positive, owner_id: int | None = None) -> dict[Any, Any]:
             "Восстанавливает аудиозапись после удаления."
         @staticmethod
-        def getAlbums(*, owner_id: int|None = None, offset: Positive|None = None,
+        def getAlbums(*, owner_id: int | None = None, offset: Positive | None = None,
                       cont: int = 50) -> dict[Any, Any]:
             "Возвращает список альбомов аудиозаписей пользователя или группы."
         @staticmethod
-        def addAlbum(*, group_id: Positive|None = None, title: str|None = None) -> int:
+        def addAlbum(*, group_id: Positive | None = None, title: str | None = None) -> int:
             "Создает пустой альбом аудиозаписей."
         @staticmethod
-        def editAlbum(*, album_id: Positive, title: str, group_id: Positive|None = None
+        def editAlbum(*, album_id: Positive, title: str, group_id: Positive | None = None
                       ) -> Literal[1]:
             "Редактирует название альбома аудиозаписей."
         @staticmethod
-        def deleteAlbum(*, group_id: Positive|None = None, album_id: Positive|None = None
+        def deleteAlbum(*, group_id: Positive | None = None, album_id: Positive | None = None
                         ) -> Literal[1]:
             "Удаляет альбом аудиозаписей."
         @staticmethod
-        def moveToAlbum(*, audio_ids: str, group_id: Positive| None = None, album_id: Positive|None = None
+        def moveToAlbum(*, audio_ids: str, group_id: Positive | None = None, album_id: Positive | None = None
                         ) -> Literal[1]:
             "Перемещает аудиозаписи в альбом."
         @staticmethod
-        def setBroadcast(*, audio: str|None = None, target_ids: str) -> dict[Any, Any]:
+        def setBroadcast(*, audio: str | None = None, target_ids: str) -> dict[Any, Any]:
             "Транслирует аудиозапись в статус пользователю или сообществу."
         @staticmethod
-        def getBroadcastList(*, filter: Literal["friends", "groups", "all"]|None = None,
+        def getBroadcastList(*, filter: Literal["friends", "groups", "all"] | None = None,
                              active: bool = False) -> list[dict[Any, Any]]:
             "Возвращает список друзей и сообществ пользователя, которые транслируют музыку в статус."
         @staticmethod
-        def getRecommendations(*, target_audio: str|None = None, user_id:Positive|None = None,
-                               offset: Positive|None = None, count: Positive = 100,
+        def getRecommendations(*, target_audio: str | None = None, user_id: Positive | None = None,
+                               offset: Positive | None = None, count: Positive = 100,
                                shuffle: bool = False) -> list[dict[Any, Any]]:
             "Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи."
         @staticmethod
-        def getPopular(*, only_eng: bool = False, genre_id: Positive|None = None,
-                       offset: Positive|None = None, count: Positive = 100) -> list[dict[Any, Any]]:
+        def getPopular(*, only_eng: bool = False, genre_id: Positive | None = None,
+                       offset: Positive | None = None, count: Positive = 100) -> list[dict[Any, Any]]:
             "Возвращает список аудиозаписей из раздела “Популярное”."
         @staticmethod
         def getCount(*, owner_id: int) -> int:
             "Возвращает количество аудиозаписей пользователя или сообщества."
-        
