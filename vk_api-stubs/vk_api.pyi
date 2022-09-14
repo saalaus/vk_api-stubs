@@ -375,22 +375,22 @@ class VkApiMethod(object):
         def restore(*, audio_id: Positive, owner_id: int | None = None) -> dict[Any, Any]:
             "Восстанавливает аудиозапись после удаления."
         @staticmethod
-        def getAlbums(*, owner_id: int | None = None, offset: Positive | None = None,
+        def getPlaylists(*, owner_id: int | None = None, offset: Positive | None = None,
                       cont: int = 50) -> dict[Any, Any]:
             "Возвращает список альбомов аудиозаписей пользователя или группы."
         @staticmethod
-        def addAlbum(*, group_id: Positive | None = None, title: str | None = None) -> int:
+        def addPlaylist(*, group_id: Positive | None = None, title: str | None = None) -> int:
             "Создает пустой альбом аудиозаписей."
         @staticmethod
-        def editAlbum(*, album_id: Positive, title: str, group_id: Positive | None = None
+        def editPlaylist(*, album_id: Positive, title: str, group_id: Positive | None = None
                       ) -> Literal[1]:
             "Редактирует название альбома аудиозаписей."
         @staticmethod
-        def deleteAlbum(*, group_id: Positive | None = None, album_id: Positive | None = None
+        def deletePlaylist(*, group_id: Positive | None = None, album_id: Positive | None = None
                         ) -> Literal[1]:
             "Удаляет альбом аудиозаписей."
         @staticmethod
-        def moveToAlbum(*, audio_ids: str, group_id: Positive | None = None, album_id: Positive | None = None
+        def moveToPlaylist(*, audio_ids: str, group_id: Positive | None = None, album_id: Positive | None = None
                         ) -> Literal[1]:
             "Перемещает аудиозаписи в альбом."
         @staticmethod
