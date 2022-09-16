@@ -1,10 +1,9 @@
 [tool.poetry]
 name = "vk_api-stubs"
 version = "0.1.0"
-description = "Stubs for vk-api"
-authors = ["sergey <saalaus@mail.ru>"]
-packages = [{ include = "vk_api-stubs" },
-            { include = "vk_api-stubs/py.typed" }]
+description = "Stubs for vk_api"
+authors = ["sergey <saalaus2@gmail.com>"]
+packages = [{ include = "vk_api-stubs" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
