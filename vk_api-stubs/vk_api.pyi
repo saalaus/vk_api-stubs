@@ -1,3 +1,5 @@
+from lib2to3.pgen2.token import NAME
+from re import L
 import jconfig
 from typing import Any, Callable, Literal, TypeAlias
 from vk_api import VkApiError, Captcha
@@ -582,7 +584,66 @@ class VkApiMethod(object):
                                  group_id: Positive = ...) -> Literal[1]: ...
 
     class friends:
-        ...
+        @staticmethod
+        def add(*, user_id: Positive = ..., text: str = ...,
+                follow: bool = ...) -> Literal[1, 2, 4]: ...
+        @staticmethod
+        def addList(*, name: str, user_ids: str = ...) -> VkObject: ...
+        @staticmethod
+        def areFriends(*, user_ids: str, need_sign: bool = ...,
+                       extended: bool = ...) -> ListOfVkObjects: ...
+        @staticmethod
+        def delete(*, user_id: Positive = ...) -> VkObject: ...
+        @staticmethod
+        def deleteAllRequests() -> Literal[1]: ...
+        @staticmethod
+        def deleteList(*, list_id: Positive) -> Literal[1]: ...
+        @staticmethod
+        def edit(*, user_id: Positive, list_ids: str = ...) -> Literal[1]: ...
+        @staticmethod
+        def editList(*, name: str = ..., list_id: Positive,
+                     user_ids: str = ..., add_user_ids: str = ...,
+                     delete_user_ids: str = ...) -> Literal[1]: ...
+        @staticmethod
+        def get(*, user_id: int = ...,
+                order: Literal["hints", "random", "name"] = ...,
+                list_id: Positive = ..., count: Positive = ...,
+                offset: Positive = ..., fields: str = ...,
+                name_case: NAME_CASE = ..., ref: str = ...,
+                ) -> VkObject | ListOfVkObjects: ...
+        @staticmethod
+        def getAppUsers() -> list[int]: ...
+        @staticmethod
+        def getAvailableForCall(*, fields: str = ...,
+                                name_case: NAME_CASE = ...) -> VkObject: ...
+        @staticmethod
+        def getByPhones(*, phones: str = ..., fields: str = ...
+                        ) -> ListOfVkObjects: ...
+        @staticmethod
+        def getLists(*, user_id: Positive = ...,
+                     return_system: bool = ...) -> VkObject: ...
+        @staticmethod
+        def getMutual(*, source_uid: Positive = ...,
+                      target_uid: Positive = ...,
+                      target_uids: str = ...,
+                      order: str = ...,
+                      count: Positive = ...,
+                      offset: Positive = ...) -> list[list[int]]: ...
+        @staticmethod
+        def getOnline(*, user_id: Positive = ..., list_id: Positive = ...,
+                      online_mobile: bool = ..., order: str = ...,
+                      count: Positive = ..., offset: Positive = ...
+                      ) -> VkObject: ...
+        @staticmethod
+        def getRecent(*, count:Positive = ...) -> list[int]: ...
+        @staticmethod
+        def getSuggestions(*, filter: str = ..., count: Positive = ...,
+                           offset: Positive = ...,fields: str = ...,
+                           name_case: NAME_CASE = ...): VkObject: ...
+        @staticmethod
+        def search(*, user_id: Positive, q: str = ..., fields: str = ...,
+                   name_case: NAME_CASE = ..., offse: Positive = ...,
+                   count: Positive = ...) -> VkObject: ...
 
     class gifts:
         @staticmethod
