@@ -364,7 +364,8 @@ class VkApiMethod(object):
         def promoHasActiveGift(*, promo_id: Positive,
                                user_id: Positive = ...) -> Literal[0, 1]: ...
         @staticmethod
-        def promoUseGift(*, promo_id: Positive, user_id: Positive = ...) -> Literal[0, 1]: ...
+        def promoUseGift(*, promo_id: Positive, user_id: Positive = ...
+                         ) -> Literal[0, 1]: ...
         @staticmethod
         def removeTestingGroup(*, group_id: int) -> Literal[1]: ...
         @staticmethod
@@ -406,7 +407,8 @@ class VkApiMethod(object):
         @staticmethod
         def deleteTopic(*, group_id: Positive, topic_id: Positive) -> Literal[1]: ...
         @staticmethod
-        def editComment(*, group_id: Positive, topic_id: Positive, comment_id: Positive,
+        def editComment(*, group_id: Positive, topic_id: Positive,
+                        comment_id: Positive,
                         message: str = ..., attachments: str = ...) -> Literal[1]: ...
         @staticmethod
         def editTopic(*, group_id: Positive, topic_id: Positive, title: str) -> Literal[1]: ...
@@ -463,7 +465,8 @@ class VkApiMethod(object):
         def getSchoolClasses(*, country_id: Positive) -> list[list[int|str]]: ...
         @staticmethod
         def getSchools(*, q: str = ..., city_id: Positive,
-                       offset: Positive = ..., count: Positive = ...) -> VkObject: ...
+                       offset: Positive = ..., count: Positive = ...
+                       ) -> VkObject: ...
         @staticmethod
         def getUniversities(*, q: str = ..., country_id: Positive = ...,
                             city_id: Positive = ..., offset: Positive = ...,
@@ -482,7 +485,8 @@ class VkApiMethod(object):
                 type: Positive = ..., owner_id: int = ...,
                 return_tags: bool = ...) -> VkObject: ...
         @staticmethod
-        def getById(*, docs: str = ..., return_tags: bool = ...) -> ListOfVkObjects: ...
+        def getById(*, docs: str = ..., return_tags: bool = ...
+                    ) -> ListOfVkObjects: ...
         @staticmethod
         def getMessagesUploadServer(*,
                                     type: Literal["doc", "audio_message"] = ...,
@@ -504,7 +508,8 @@ class VkApiMethod(object):
     class donut:
         @staticmethod
         def getFriends(* owner_id: int, offset: Positive = ...,
-                       count: Positive = ..., fields: str = ...) -> ListOfVkObjects: ...
+                       count: Positive = ..., fields: str = ...
+                       ) -> ListOfVkObjects: ...
         @staticmethod
         def getSubscription(*, owner_id: int) ->VkObject: ...
         @staticmethod
@@ -542,7 +547,8 @@ class VkApiMethod(object):
         def editTag(*, id: int, name: str) -> Literal[1]: ...
         @staticmethod
         def get(*, extended: bool = ...,
-                item_type: Literal["post", "video", "product", "article", "link"] = ...,
+                item_type: Literal["post", "video", "product", "article",
+                                   "link"] = ...,
                 tag_id: int = ..., offset: Positive = ..., count: Positive = ...,
                 fields: str = ..., is_from_snackbar: bool = ...) -> VkObject: ...
         @staticmethod
@@ -575,7 +581,8 @@ class VkApiMethod(object):
                         group_id: Positive = ...,
                         tag_ids: str = ...) -> Literal[1]: ...
         @staticmethod
-        def setTags(*, item_type: Literal["post", "video", "product", "article", "link"] = ...,
+        def setTags(*, item_type: Literal["post", "video", "product",
+                                          "article", "link"] = ...,
                     item_owner_id: int = ..., item_id: int = ...,
                     tag_ids: str = ..., link_id: str = ...,
                     link_url: str = ...) -> Literal[1]: ...
@@ -698,12 +705,14 @@ class VkApiMethod(object):
         @staticmethod
         def forceCallFinish(*, call_id: str) -> Literal[1]: ...
         @staticmethod
-        def get(*, offset: Positive = ..., count: Positive = ..., time_offset: Positive = ...,
+        def get(*, offset: Positive = ..., count: Positive = ..., 
+                time_offset: Positive = ...,
                 filters:Positive = ..., preview_length:Positive = ...,
                 last_message_id:Positive = ...) -> VkObject: ...
         @staticmethod
         def getByConversationMessageId(*, peer_id:int, conversation_message_ids: str,
-                                       extended: bool = ..., fields: str = ..., group_id: Positive = ...
+                                       extended: bool = ..., fields: str = ...,
+                                       group_id: Positive = ...
                                        ) -> VkObject: ...
         @staticmethod
         def getById(*, message_ids: str, preview_length: Positive = ...,
@@ -758,7 +767,9 @@ class VkApiMethod(object):
                                  fields: str = ..., extended: bool = ...,
                                  group_id: Positive = ...) -> Any: ...
         @staticmethod
-        def getIntentUsers(*, intent: Literal["promo_newsletter", "non_promo_newsletter", "confirmed_notification"],
+        def getIntentUsers(*, intent: Literal["promo_newsletter",
+                                              "non_promo_newsletter",
+                                              "confirmed_notification"],
                            subscribe_id: Positive = ..., offset: Positive = ...,
                            count: Positive = ..., extended: bool = ...,
                            name_case: NAME_CASE = ..., fields: str = ...,
@@ -833,7 +844,8 @@ class VkApiMethod(object):
         def sendMessageEventAnswer(*, event_id: str, user_id: int, peer_id: int,
                                    event_data: str = ...) -> Literal[1]: ...
         @staticmethod
-        def setActivity(*, user_id: str = ..., type: Literal["typing", "audiomessage"] = ...,
+        def setActivity(*, user_id: str = ..., type: Literal["typing",
+                                                             "audiomessage"] = ...,
                         peer_id: int = ..., group_id: Positive = ...) -> Literal[1]: ...
         @staticmethod
         def setChatPhoto(*, file: str) -> VkObject: ...
@@ -900,7 +912,26 @@ class VkApiMethod(object):
         ...
 
     class streaming:
-        ...
+        @staticmethod
+        def getServerUrl() -> VkObject: ...
+        @staticmethod
+        def getSettings() -> VkObject: ...
+        @staticmethod
+        def getStats(*, type: Literal["received", "prepared"] = ...,
+                     interval: Literal["5m", "1h", "24h"] = ...,
+                     start_time: Positive = ..., end_time: Positive = ...
+                     ) -> ListOfVkObjects: ...
+        @staticmethod
+        def getStem(*, word: str) -> Any: ...
+        @staticmethod
+        def setSettings(*,
+                        monthly_tier: Literal["tier_1",
+                                              "tier_2",
+                                              "tier_3",
+                                              "tier_4",
+                                              "tier_5",
+                                              "tier_6",
+                                              "unlimited"]) -> Literal[1]: ...
 
     class users:
         @staticmethod
@@ -910,26 +941,36 @@ class VkApiMethod(object):
             """Возвращает расширенную информацию о пользователях."""
         @staticmethod
         def getFollowers(*, user_id: Positive = ..., offset: Positive = ...,
-                         count: Positive = ..., fields: str = ..., name_case: NAME_CASE = ...
+                         count: Positive = ..., fields: str = ...,
+                         name_case: NAME_CASE = ...
                          ) -> VkObject: ...
 
         @staticmethod
         def getSubscriptions(*, user_id: Positive = ..., extended: bool = ...,
-                             offset: Positive = ..., count: Positive = ..., fields: str = ...) -> VkObject: ...
+                             offset: Positive = ..., count: Positive = ...,
+                             fields: str = ...) -> VkObject: ...
 
         @staticmethod
         def report(*, user_id: Positive, type: Literal["porn", "spam",
                    "insult", "advertisеment"], comment: str = ...) -> Literal[1]: ...
 
         @staticmethod
-        def search(*, q: str = ..., sort: Literal[0, 1] = ..., offset: Positive = ..., count: Positive = ...,
-                   fields: str = ..., city: Positive = ..., country: Positive = ..., hometown: str = ...,
-                   university_country: Positive = ..., university: Positive = ..., university_year: Positive = ...,
-                   university_faculty: Positive = ..., university_chair: Positive = ...,
-                   sex: Literal[0, 1, 2] = ..., status: Literal[1, 2, 3, 4, 5, 6, 7, 8] = ...,
-                   age_from: Positive = ..., age_to: Positive = ..., birth_day: Positive = ...,
-                   birth_month: Positive = ..., birth_year: Positive  = ..., online: bool = ...,
-                   has_photo: bool = ..., school_country: Positive = ..., school_city: Positive = ..., school_class: Positive = ...,
+        def search(*, q: str = ..., sort: Literal[0, 1] = ...,
+                   offset: Positive = ..., count: Positive = ...,
+                   fields: str = ..., city: Positive = ...,
+                   country: Positive = ..., hometown: str = ...,
+                   university_country: Positive = ...,
+                   university: Positive = ..., university_year: Positive = ...,
+                   university_faculty: Positive = ...,
+                   university_chair: Positive = ...,
+                   sex: Literal[0, 1, 2] = ...,
+                   status: Literal[1, 2, 3, 4, 5, 6, 7, 8] = ...,
+                   age_from: Positive = ..., age_to: Positive = ...,
+                   birth_day: Positive = ...,
+                   birth_month: Positive = ..., birth_year: Positive  = ...,
+                   online: bool = ...,
+                   has_photo: bool = ..., school_country: Positive = ...,
+                   school_city: Positive = ..., school_class: Positive = ...,
                    school: Positive  = ..., school_year: Positive = ...,
                    religion: str = ..., company: str = ..., position: str = ...,
                    group_id: Positive = ..., from_list: str  = ...) -> VkObject: ...
@@ -944,7 +985,8 @@ class VkApiMethod(object):
                                   ) -> VkObject: ...
         @staticmethod
         def getLinkStats(*, key: str, source: str = ..., access_key: str = ...,
-                         interval: Literal["hour", "day", "week", "month", "forever"] = ...,
+                         interval: Literal["hour", "day", "week", "month",
+                                           "forever"] = ...,
                          intervals_count: Positive = ..., extended: bool = ...
                          )->VkObject: ...
         @staticmethod
@@ -1017,7 +1059,8 @@ class VkApiMethod(object):
         def addPlaylist(*, group_id: Positive = ..., title: str = ...) -> int:
             "Создает пустой альбом аудиозаписей."
         @staticmethod
-        def editPlaylist(*, album_id: Positive, title: str, group_id: Positive = ...
+        def editPlaylist(*, album_id: Positive, title: str,
+                         group_id: Positive = ...
                       ) -> Literal[1]:
             "Редактирует название альбома аудиозаписей."
         @staticmethod
@@ -1025,7 +1068,8 @@ class VkApiMethod(object):
                         ) -> Literal[1]:
             "Удаляет альбом аудиозаписей."
         @staticmethod
-        def moveToPlaylist(*, audio_ids: str, group_id: Positive = ..., album_id: Positive = ...
+        def moveToPlaylist(*, audio_ids: str, group_id: Positive = ...,
+                           album_id: Positive = ...
                         ) -> Literal[1]:
             "Перемещает аудиозаписи в альбом."
         @staticmethod
@@ -1042,7 +1086,8 @@ class VkApiMethod(object):
             "Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи."
         @staticmethod
         def getPopular(*, only_eng: bool = ..., genre_id: Positive  = ...,
-                       offset: Positive = ..., count: Positive = ...) -> ListOfVkObjects:
+                       offset: Positive = ..., count: Positive = ...
+                       ) -> ListOfVkObjects:
             "Возвращает список аудиозаписей из раздела “Популярное”."
         @staticmethod
         def getCount(*, owner_id: int) -> int:
