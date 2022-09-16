@@ -5,8 +5,6 @@ from vk_api.execute import VkFunction
 from vk_api.vk_api import VkApi
 
 
-PoolRequest: NamedTuple 
-
 class RequestResult:...
 
 class VkRequestsPool:

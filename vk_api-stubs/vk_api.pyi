@@ -1,5 +1,3 @@
-from os import stat
-from re import L
 import jconfig
 from typing import Any, Callable, Literal, TypeAlias
 from vk_api import VkApiError, Captcha

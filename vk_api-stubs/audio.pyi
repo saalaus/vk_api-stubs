@@ -2,7 +2,7 @@ from typing import Any, Iterator, Sequence
 from urllib.request import Request
 from vk_api.vk_api import VkApi
 
-str_int_none = str| int | None
+str_int_none = str | int | None
 
 class VkAudio:
     def __init__(self, vk: VkApi, convert_m3u8_links: bool=True) -> None: ...
@@ -15,7 +15,7 @@ class VkAudio:
     
     def get_albums(self, owner_id: str_int_none=None) -> list[dict]: ...
     
-    def search_user(self, owner_id: str_int_none=None, q: str='') -> list[dict]: ...
+    def search_user(self, owner_id: str_int_none=None, q: str= '') -> list[dict]: ...
     
     def search(self, q:str, count: int=100, offset: int=0) -> Iterator[dict]: ...
     
