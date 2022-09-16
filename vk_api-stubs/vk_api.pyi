@@ -4,7 +4,7 @@ from vk_api import VkApiError, Captcha
 from requests import Response
 
 DEFAULT_USER_SCOPE = ...
-NAME_CASE = Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+NAME_CASE: TypeAlias = Literal["nom", "gen", "dat", "acc", "ins", "abl"]
 Positive: TypeAlias =  int
 Text: TypeAlias = dict[Any, Any] | str | list[dict[Any, Any]]
 VkObject: TypeAlias = dict[Any, Any]
@@ -322,7 +322,61 @@ class VkApiMethod(object):
         
 
     class apps:
-        ...
+        @staticmethod
+        def addUsersToTestingGroup(*, user_ids: str, group_id: int) -> Literal[0, 1]: ...
+        @staticmethod
+        def deleteAppRequests() -> Literal[1]: ...
+        @staticmethod
+        def get(*, app_id: Positive = ..., app_ids: str = ...,
+                platform: Literal["ios", "android", "winphone", "web"] = ...,
+                extended: bool = ..., return_friends: bool = ...,
+                fields: str = ..., name_case: NAME_CASE = ...) -> VkObject: ...
+        @staticmethod
+        def getCatalog(*,
+                       sort: Literal["popular_today", "visitors", "create_date", "growth_rate", "popular_week"] = ...,
+                       offset: Positive = ..., count: Positive,
+                       platform: Literal["ios", "android", "winphone", "web", "html5"] = ...,
+                       extended: bool = ..., return_friends: bool = ...,
+                       fields: str = ..., name_case: NAME_CASE = ...,
+                       q: str = ..., genre_id: Positive = ...,
+                       filter: Literal["installed", "featured"] = ...) -> VkObject: ...
+        @staticmethod
+        def getFriendsList(*, extended: bool = ..., count: Positive = ...,
+                           offset: Positive = ...,
+                           type: Literal["invite", "request"] = ...,
+                           fields: str = ...) -> VkObject: ...
+        @staticmethod
+        def getLeaderboard(*, type: Literal["level", "points", "score"], # TODO: global option
+                           extended: bool = ...) -> ListOfVkObjects: ...
+        @staticmethod
+        def getMiniAppPolicies(*, app_id: Positive) -> VkObject: ...
+        @staticmethod
+        def getScopes(*, type: str = ...) -> VkObject: ...
+        @staticmethod
+        def getScore(*, user_id: Positive) -> int: ...
+        @staticmethod
+        def getTestingGroups(*, group_id: int = ...) -> ListOfVkObjects: ...
+        @staticmethod
+        def isNotificationsAllowed(*, user_id: Positive) -> VkObject: ...
+        @staticmethod
+        def promoHasActiveGift(*, promo_id: Positive,
+                               user_id: Positive = ...) -> Literal[0, 1]: ...
+        @staticmethod
+        def promoUseGift(*, promo_id: Positive, user_id: Positive = ...) -> Literal[0, 1]: ...
+        @staticmethod
+        def removeTestingGroup(*, group_id: int) -> Literal[1]: ...
+        @staticmethod
+        def removeUsersFromTestingGroups(*, user_ids: str) -> Literal[1]: ...
+        @staticmethod
+        def sendRequest(*, user_id: Positive,
+                        type: Literal["invite", "request"] = ...,
+                        name: str = ..., key: str = ...,
+                        separate: bool = ...) -> int: ...
+        @staticmethod
+        def updateMetaForTestingGroup(*, group_id: int, webview: str,
+                                      name: str, platforms: str,
+                                      user_ids: str = ...) -> VkObject: ...
+        
 
     class auth:
         @staticmethod
