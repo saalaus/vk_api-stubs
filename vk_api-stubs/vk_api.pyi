@@ -1004,7 +1004,17 @@ class VkApiMethod(object):
         ...
 
     class widgets:
-        ...
+        @staticmethod
+        def getComments(*, widget_api_id: int = ..., url: str = ...,
+                        page_id: str = ..., order: str = ...,
+                        fields: str = ..., offset: Positive = ...,
+                        count: Positive = ...) -> VkObject: ...
+        @staticmethod
+        def getPages(*, widget_api_id: int = ...,
+                     order: Literal["date", "comments", "likes",
+                                    "friend_likes"] = ...,
+                     offset: Positive = ..., count: Positive = ...
+                     ) -> VkObject: ...
 
     class audio:
         @staticmethod
