@@ -1,5 +1,3 @@
-from lib2to3.pgen2.token import NAME
-from re import L
 import jconfig
 from typing import Any, Callable, Literal, TypeAlias
 from vk_api import VkApiError, Captcha
@@ -903,7 +901,16 @@ class VkApiMethod(object):
         ...
 
     class storage:
-        ...
+        @staticmethod
+        def get(*, key: str = ...,
+                keys: str = ...,
+                user_id: Positive = ...) -> ListOfVkObjects: ...
+        @staticmethod
+        def getKeys(*, user_id: Positive = ...,
+                    offset: Positive = ..., count: Positive = ...
+                    ) -> list[str]: ...
+        @staticmethod
+        def set(*, key: str, value: Text = ..., user_id: Positive = ...) ->Literal[1]: ...
 
     class store:
         @staticmethod
