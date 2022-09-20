@@ -27,11 +27,12 @@ def get_unknown_exc_str(s: Any) -> str: ...
 
 
 class VkApi:
-    def __init__(self, login: str | None = ..., password: str | None = ..., token: str | None = None,
-                 auth_handler: Callable[[str], str] | None = None, captcha_handler: Callable[[Captcha], str] | None = None,
+    def __init__(self, login: str = ..., password: str = ..., token: str = ...,
+                 auth_handler: Callable[[str], str] = ...,
+                 captcha_handler: Callable[[Captcha], str] = ...,
                  config: ... = jconfig.Config, config_filename: str = 'vk_config.v2.json',
                  api_version: str = '5.92', app_id: int = 6222115, scope: int = DEFAULT_USER_SCOPE,
-                 client_secret: str | None = None, session: str | None = None) -> None: ...
+                 client_secret: str = ..., session: str = ...) -> None: ...
 
     def _sid(self) -> str: ...
 
@@ -41,11 +42,11 @@ class VkApi:
 
     def _auth_token(self, reauth: bool = False) -> None: ...
 
-    def _vk_login(self, captcha_sid: int | None = None, captcha_key: str | int | None = None) -> None: ...
+    def _vk_login(self, captcha_sid: int = ..., captcha_key: str | int = ...) -> None: ...
 
     def _pass_twofactor(self, auth_response: Response) -> str: ...
 
-    def _pass_security_check(self, response: Response | None = None) -> str: ...
+    def _pass_security_check(self, response: Response = ...) -> str: ...
 
     def check_sid(self) -> dict[Any, Any] | None: ...
 
@@ -69,7 +70,8 @@ class VkApi:
 
     def get_api(self) -> VkApiMethod: ...
 
-    def method(self, method: str, values: dict[Any, Any] | None = None, captcha_sid: str | int | None = None, captcha_key: str | None = None,
+    def method(self, method: str, values: dict[Any, Any] = ...,
+               captcha_sid: str | int = ..., captcha_key: str = ...,
                raw: bool = False) -> Any: ...
 
 
@@ -2437,8 +2439,41 @@ class VkApiMethod(object):
                      offset: Positive = ..., count: Positive = ...
                      ) -> VkObject: ...
     class audio:
+        # not implemented methods:
+        # savePlaylistAsCopy - NOT WORK
+        # sendTrackReaction - NOT WORK
+        # deletePlaylistCoverPhoto
+        # followCurator - хз
+        # getAudiosByCurator - хз
+        # setPlaylistCoverPhoto
+        # unfollowCurator - хз
         @staticmethod
-        def get(*, owner_id: int = ..., album_id: int = ...,
+        def searchPlaylists(*, q: str, count: Positive = ...,
+                            offset: Positive = ...
+                            ) -> ResponseOfItems:
+            "Поиск плейлистов"
+        @staticmethod
+        def getSearchTrends(*, offset: Positive = ...,
+                            count: Positive = ...) -> ResponseOfItems:
+            "Список релевантных исполнителей"
+        @staticmethod
+        def searchArtists(*, q: str, offset: Positive = ...,
+                          count: Positive = ...) -> ResponseOfItems:
+            "Поиск артистов"
+        @staticmethod
+        def followArtist(*, artist_id: Positive, ref: str) -> Literal[1]:
+            "Подписаться на артиста"
+        @staticmethod
+        def unfollowArtist(*, artist_id: Positive, ref: str) -> Literal[1]:
+            "Отписаться от артиста"
+        @staticmethod
+        def getAudiosByArtist(*, artist_id: Positive) -> ResponseOfItems:
+            "Получить музыку артиста"
+        @staticmethod
+        def followPlaylist(*, owner_id: int, playlist_id: Positive) -> VkObject:
+            "Добавить сторонний плейлист к себе"
+        @staticmethod
+        def get(*, owner_id: int = ..., playlist_id: int = ...,
                 audio_ids: str = ..., need_user: bool = ...,
                 offset: Positive = ..., count: Positive = ...) -> VkObject:
             "Возвращает список аудиозаписей пользователя или сообщества."
@@ -2455,7 +2490,7 @@ class VkApiMethod(object):
                    offset: Positive = ..., count: Positive = ...) -> VkObject:
             "Возвращает список аудиозаписей в соответствии с заданным критерием поиска."
         @staticmethod
-        def getUploadServer() -> VkObject:
+        def getUploadServer() -> UploadServer:
             "Возвращает адрес сервера для загрузки аудиозаписей."
         @staticmethod
         def save(*, server: int, audio: str, hash: str = ..., artist: str = ...,
@@ -2483,27 +2518,21 @@ class VkApiMethod(object):
             "Восстанавливает аудиозапись после удаления."
         @staticmethod
         def getPlaylists(*, owner_id: int = ..., offset: Positive = ...,
-                      cont: int = 50) -> VkObject:
-            "Возвращает список альбомов аудиозаписей пользователя или группы."
+                      cont: int = 50) -> ResponseOfItems:
+            "Возвращает список плейлистов пользователя или группы."
         @staticmethod
-        def addPlaylist(*, group_id: Positive = ..., title: str = ...) -> int:
-            "Создает пустой альбом аудиозаписей."
+        def createPlaylist(*, owner_id: int = ..., title: str = ...) -> VkObject:
+            "Создает пустой плейлист."
         @staticmethod
-        def editPlaylist(*, album_id: Positive, title: str,
-                         group_id: Positive = ...
+        def editPlaylist(*, owner_id: int, playlist_id: Positive, title: str,
                       ) -> Literal[1]:
-            "Редактирует название альбома аудиозаписей."
+            "Редактирует название плейлиста."
         @staticmethod
-        def deletePlaylist(*, group_id: Positive = ..., album_id: Positive = ...
+        def deletePlaylist(*, owner_id: int, playlist_id: Positive = ...
                         ) -> Literal[1]:
-            "Удаляет альбом аудиозаписей."
+            "Удаляет плейлист."
         @staticmethod
-        def moveToPlaylist(*, audio_ids: str, group_id: Positive = ...,
-                           album_id: Positive = ...
-                        ) -> Literal[1]:
-            "Перемещает аудиозаписи в альбом."
-        @staticmethod
-        def setBroadcast(*, audio: str = ..., target_ids: str) -> VkObject:
+        def setBroadcast(*, audio: str = ..., target_ids: str = ...) -> VkObject:
             "Транслирует аудиозапись в статус пользователю или сообществу."
         @staticmethod
         def getBroadcastList(*, filter: Literal["friends", "groups", "all"] = ...,
