@@ -1,5 +1,5 @@
 from enum import IntEnum
-from typing import Iterator, Type
+from typing import Any, Iterator, Type
 
 from vk_api.vk_api import VkApi
 
@@ -102,7 +102,13 @@ ALL_EVENT_ATTRS: tuple
 PARSE_PEER_ID_EVENTS: list[int]
 PARSE_MESSAGE_FLAGS_EVENTS: list[VkEventType]
 
-class Event: ...
+class Event:
+    text: str
+    user_id: int
+    type: VkEventType
+    to_me: bool
+    obj: dict[Any, Any]
+    from_user: int
 
 class VkLongPoll:
     DEFAULT_EVENT_CLASS: Event

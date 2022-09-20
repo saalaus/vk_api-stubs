@@ -29,7 +29,7 @@ def get_unknown_exc_str(s: Any) -> str: ...
 class VkApi:
     def __init__(self, login: str = ..., password: str = ..., token: str = ...,
                  auth_handler: Callable[[str], str] = ...,
-                 captcha_handler: Callable[[Captcha], str] = ...,
+                 captcha_handler: Callable[[Captcha], Any] = ...,
                  config: ... = jconfig.Config, config_filename: str = 'vk_config.v2.json',
                  api_version: str = '5.92', app_id: int = 6222115, scope: int = DEFAULT_USER_SCOPE,
                  client_secret: str = ..., session: str = ...) -> None: ...

@@ -50,7 +50,12 @@ class VkBotEventType(Enum):
     VKPAY_TRANSACTION: Literal['vkpay_transaction']
     
     
-class VkBotEvent: ...
+class VkBotEvent:
+    raw: dict
+    type: VkBotEventType
+    obj: DotDict
+    object: DotDict
+    from_user: int
 
 class VkBotMessageEvent(VkBotEvent): ...
 
